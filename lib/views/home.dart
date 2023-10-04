@@ -4,6 +4,7 @@ import 'package:blog_app/controllers/home_controller.dart';
 import 'package:blog_app/models/blogModel.dart';
 import 'package:blog_app/views/blogs_explorer.dart';
 import 'package:blog_app/views/details.dart';
+import 'package:blog_app/views/favourite.dart';
 import 'package:blog_app/widgets/container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -97,6 +98,11 @@ class Home extends StatelessWidget {
 
                 /// favourites
                 ListTile(
+                  onTap: () {
+                    /// navigate to favourite screen screen
+                    homeController.scaffoldKey.currentState!.closeDrawer();
+                    Get.to(FavouriteScreen());
+                  },
                   leading: Icon(
                     Icons.favorite,
                     color: whiteColor,
@@ -175,10 +181,17 @@ class Home extends StatelessWidget {
                                         blackColor.withOpacity(0.5),
                                     child: Center(
                                         child: IconButton(
-                                            onPressed: () {
-                                              favouriteController
-                                                  .FaouritesBlogs();
+                                            onPressed: () async {
+                                              /// pass data to favourite controller and save data.
+                                              await favouriteController
+                                                  .FaouritesBlogs(
+                                                      id: data.id.toString(),
+                                                      imageUrl: data.imageUrl
+                                                          .toString(),
+                                                      title: data.title
+                                                          .toString());
                                               controller.update();
+
                                               print("value is ===>> " +
                                                   favouriteController
                                                       .isFavourite
