@@ -37,4 +37,9 @@ class FavouriteController extends GetxController {
 
     print(' Data =========>>>> ${box}');
   }
+
+  deteleSavedBlog(FavouritesModel model) {
+    model.delete();
+    update();
+  }
 }

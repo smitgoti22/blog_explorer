@@ -6,6 +6,8 @@ import 'package:blog_app/views/blogs_explorer.dart';
 import 'package:blog_app/views/details.dart';
 import 'package:blog_app/views/favourite.dart';
 import 'package:blog_app/widgets/container.dart';
+import 'package:blog_app/widgets/favourite_button.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -174,42 +176,19 @@ class Home extends StatelessWidget {
                                       fit: BoxFit.fill),
                                 ),
                                 Positioned(
-                                  top: 15,
-                                  right: 15,
-                                  child: CircleAvatar(
-                                    backgroundColor:
-                                        blackColor.withOpacity(0.5),
-                                    child: Center(
-                                        child: IconButton(
-                                            onPressed: () async {
-                                              /// pass data to favourite controller and save data.
-                                              await favouriteController
-                                                  .FaouritesBlogs(
-                                                      id: data.id.toString(),
-                                                      imageUrl: data.imageUrl
-                                                          .toString(),
-                                                      title: data.title
-                                                          .toString());
-                                              controller.update();
+                                    top: 15,
+                                    right: 15,
+                                    child: FavoriteButton(
+                                      isFavorite: false,
+                                      valueChanged: (_isFavorite) {
+                                        print('Is Favorite : $_isFavorite');
 
-                                              print("value is ===>> " +
-                                                  favouriteController
-                                                      .isFavourite
-                                                      .toString());
-                                            },
-                                            icon: favouriteController
-                                                        .isFavourite ==
-                                                    true
-                                                ? Icon(
-                                                    Icons.favorite,
-                                                    color: tealColor,
-                                                  )
-                                                : Icon(
-                                                    Icons.favorite_border,
-                                                    color: tealColor,
-                                                  ))),
-                                  ),
-                                ),
+                                        favouriteController.saveBlog(
+                                            id: data.id.toString(),
+                                            title: data.title.toString(),
+                                            imageUrl: data.imageUrl.toString());
+                                      },
+                                    )),
                               ],
                             ),
                             SizedBox(

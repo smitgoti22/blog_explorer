@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 
 class AppContainer extends StatelessWidget {
-
   final double? height;
-  final double ? width;
+  final double? width;
   final color;
   final borderradious;
   final image;
   final child;
   final border;
-  final EdgeInsets ? margin;
-  final EdgeInsets ? padding;
-  final LinearGradient ? linergradient;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
+  final LinearGradient? linergradient;
 
-  const AppContainer({Key? key, this.height, this.width, this.color, this.borderradious, this.image, this.child, this.border, this.padding, this.margin, this.linergradient, }) : super(key: key);
+  const AppContainer({
+    Key? key,
+    this.height,
+    this.width,
+    this.color,
+    this.borderradious,
+    this.image,
+    this.child,
+    this.border,
+    this.padding,
+    this.margin,
+    this.linergradient,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +38,7 @@ class AppContainer extends StatelessWidget {
         image: image,
         borderRadius: borderradious,
         border: border,
-          gradient: linergradient,
+        gradient: linergradient,
       ),
       child: child,
     );
